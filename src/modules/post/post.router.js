@@ -1,11 +1,12 @@
 import { Router } from "express";
-import userPostMiddleware from "./post.controller.js";
+import { userPost } from "./post.controller.js";
+import { userPostMiddleware } from "../../common/middlewares/post.middleware.js";
 
 
 
 const postRouter = Router();
 
 
-postRouter.post('/login/posts', userPostMiddleware);
+postRouter.post('/posts', userPostMiddleware, userPost);
 
 export default postRouter;

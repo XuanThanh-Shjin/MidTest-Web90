@@ -33,13 +33,14 @@ export const authLogin = async (req, res) => {
         if (!isPasswordValid) {
             createResponse(res, 400, MESSAGE.INVALID_CREDENTIALS);
         }
+        // existingUser.password = undefined;
+
         const randomString = crypto.randomUUID();
         const apiKey = `mern-${existingUser._id}-${existingUser.email}-${randomString}`;
 
         existingUser.apikey = apiKey;
         await existingUser.save();
         return res.status(200).json({ apiKey });
-        // existingUser.password = undefined;
     } catch (error) {
         console.log(error);
     }
